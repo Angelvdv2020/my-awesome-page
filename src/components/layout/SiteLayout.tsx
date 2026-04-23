@@ -1,7 +1,7 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import { ReactNode, useEffect, useRef } from "react";
+import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { toast } from "@/hooks/use-toast";
-import { Send } from "lucide-react";
+import { Send, Menu, X } from "lucide-react";
 
 const NAV = [
   { to: "/", label: "Главная" },
