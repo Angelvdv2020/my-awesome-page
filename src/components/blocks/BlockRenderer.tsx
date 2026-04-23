@@ -10,7 +10,7 @@ const Container = ({ children, className = "" }: { children: React.ReactNode; cl
 const CTAButton = ({ href, children, variant = "primary" }:
   { href: string; children: React.ReactNode; variant?: "primary" | "ghost" }) => {
   const cls = variant === "primary"
-    ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-[var(--shadow-red)]"
+    ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-[var(--shadow-accent)]"
     : "bg-white/10 text-white hover:bg-white/20 border border-white/20";
   return (
     <Link to={href} className={`inline-flex items-center gap-2 px-6 py-3 rounded-md font-semibold text-sm transition ${cls}`}>
@@ -24,7 +24,7 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
     case "hero":
       return (
         <section className="relative overflow-hidden bg-[hsl(var(--ink))] text-white py-20 md:py-28 grid-bg">
-          <div className="absolute inset-0 radial-red opacity-60" />
+          <div className="absolute inset-0 radial-accent opacity-60" />
           <Container className="relative">
             {block.eyebrow && (
               <div className="inline-block text-xs font-mono tracking-widest text-primary uppercase mb-4 px-3 py-1 border border-primary/40 rounded">

@@ -40,9 +40,9 @@
     --ink: 0 0% 7%;
     --ink-2: 0 0% 12%;
 
-    --gradient-red: linear-gradient(135deg, hsl(358 85% 52%), hsl(358 95% 62%));
+    --gradient-accent: linear-gradient(135deg, hsl(358 85% 52%), hsl(358 95% 62%));
     --gradient-dark: linear-gradient(180deg, hsl(0 0% 7%), hsl(0 0% 12%));
-    --shadow-red: 0 20px 60px -20px hsl(358 85% 52% / 0.5);
+    --shadow-accent: 0 20px 60px -20px hsl(358 85% 52% / 0.5);
     --shadow-elevated: 0 30px 80px -30px hsl(0 0% 0% / 0.25);
   }
 }
@@ -67,7 +67,7 @@
       linear-gradient(90deg, hsl(0 0% 100% / 0.04) 1px, transparent 1px);
     background-size: 56px 56px;
   }
-  .radial-red {
+  .radial-accent {
     background: radial-gradient(60% 60% at 80% 20%, hsl(358 85% 52% / 0.35) 0%, transparent 60%),
                 radial-gradient(50% 50% at 10% 90%, hsl(358 85% 52% / 0.18) 0%, transparent 60%);
   }
