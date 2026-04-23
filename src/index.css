@@ -322,6 +322,20 @@
   .legacy-content [class*="Slider_slider__wrapper__"] { gap: 16px !important; }
   .legacy-content [class*="HeroBlock_card__"],
   .legacy-content [class*="IndexHeroBlock_card__"] { padding: 24px !important; }
+  /* Events / News listings with fixed sidebar — stack vertically */
+  .legacy-content [class*="Events_section__layout__"],
+  .legacy-content [class*="News_section__layout__"] {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+  }
+  .legacy-content [class*="ListFilter_filters__"] { width: 100% !important; max-width: 100% !important; position: static !important; }
+  .legacy-content [class*="Events_section__list__"],
+  .legacy-content [class*="News_section__list__"] { width: 100% !important; max-width: 100% !important; }
+  .legacy-content [class*="Events_section__item__"] {
+    display: flex !important;
+    flex-direction: column !important;
+  }
 }
 
 @media (max-width: 640px) {
