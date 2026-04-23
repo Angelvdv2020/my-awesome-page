@@ -20,7 +20,7 @@ interface Props {
   bare?: boolean;
 }
 
-const SiteLayout = ({ children, trapInternalLinks }: Props) => {
+const SiteLayout = ({ children, trapInternalLinks, bare }: Props) => {
   const navigate = useNavigate();
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -58,6 +58,10 @@ const SiteLayout = ({ children, trapInternalLinks }: Props) => {
       el.removeEventListener("submit", onSubmit);
     };
   }, [trapInternalLinks, navigate]);
+
+  if (bare) {
+    return <div ref={contentRef}>{children}</div>;
+  }
 
   return (
     <div className="min-h-screen bg-[hsl(var(--ink))] text-white flex flex-col">
