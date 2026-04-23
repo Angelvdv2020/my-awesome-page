@@ -276,7 +276,8 @@
 
 /* Any Card_card__ inside a section needs usable min-height so background-only
    cards aren't 0px tall. Exclude PointCard which also matches the substring. */
-.legacy-content section [class*="Card_card__"]:not([class*="HeroBlock_card__"]):not([class*="IndexHeroBlock_"]):not([class*="PointCard_"]) {
+.legacy-content section [class^="Card_card__"]:not([class*="vector"]):not([class*="content"]):not([class*="bg__"]),
+.legacy-content section [class*=" Card_card__"]:not([class*="vector"]):not([class*="content"]):not([class*="bg__"]) {
   min-height: 200px;
 }
 /* PointCard: simple stat block — strip the generic Card frame */
