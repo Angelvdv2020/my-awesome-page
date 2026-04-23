@@ -104,7 +104,10 @@ const SiteLayout = ({ children, trapInternalLinks, bare }: Props) => {
         </div>
       </header>
 
-      <main ref={contentRef} className="flex-1">{children}</main>
+      <main ref={contentRef} className="flex-1 relative grid-bg">
+        <div aria-hidden className="pointer-events-none absolute inset-0 radial-red opacity-70" />
+        <div className="relative">{children}</div>
+      </main>
 
       <footer className="border-t border-white/10 mt-12">
         <div className="max-w-7xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-6 text-sm text-white/60">
