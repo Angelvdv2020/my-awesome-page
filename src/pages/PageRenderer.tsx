@@ -4,7 +4,7 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import manifest from "@/content/pages/_manifest.json";
 import NotFound from "./NotFound";
 
-interface PageData {
+export interface PageData {
   title: string;
   description: string;
   keywords: string;
