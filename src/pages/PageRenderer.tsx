@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import SiteLayout from "@/components/layout/SiteLayout";
 import manifest from "@/content/pages/_manifest.json";
