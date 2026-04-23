@@ -34,7 +34,10 @@ def rewrite_href(u: str) -> str:
     if re.match(r"^(mailto:|tel:|#|javascript:|data:)", u, re.I): return u
     # external (after host strip nothing left → was external)
     is_external = re.match(r"^https?://", u, re.I) and not re.match(r"^https?://(?:www\.)?(?:Vortex|redsecurity|vortex1)\.ru", u, re.I)
-    if is_external: return u
+    if is_external:
+        # for share-links etc., still rewrite legacy host inside querystring
+        u = re.sub(r"https?://(?:www\.)?Vortex\.ru", CANONICAL_HOST, u, flags=re.I)
+        return u
     # internal
     u = re.sub(r"^https?://(?:www\.)?(?:Vortex|redsecurity|vortex1)\.ru", "", u, flags=re.I)
     # asset → /site/
