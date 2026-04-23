@@ -149,6 +149,11 @@ def extract(html: str, slug: str) -> dict:
     body = re.sub(r'(src|poster|data-src)=(")([^"]+)"', _src, body)
     body = re.sub(r"(src|poster|data-src)=(')([^']+)'", _src, body)
 
+    # Final sweep: any remaining absolute Vortex.ru/upload anywhere → local mirror
+    body = re.sub(r"https?://(?:www\.)?Vortex\.ru(/upload/[^\s\"'<>]+)", r"/site\1", body, flags=re.I)
+    # Any leftover Vortex.ru host → canonical
+    body = re.sub(r"https?://(?:www\.)?Vortex\.ru", CANONICAL_HOST, body, flags=re.I)
+
     return {
         "title": title,
         "description": meta["description"],
