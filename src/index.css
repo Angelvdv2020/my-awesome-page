@@ -214,7 +214,15 @@
 .legacy-content [class*="Slider_slider__btn__"],
 .legacy-content [class*="Slider_slider__arrow__"],
 .legacy-content [class*="HeroBlock_card__buttons__"] [class*="Slider_"],
-.legacy-content [class*="IndexHeroBlock_card__buttons__"] [class*="Slider_"] { display: none !important; }
+.legacy-content [class*="HeroBlock_card__buttons__"] [class*="Slider_"],
+.legacy-content [class*="IndexHeroBlock_card__buttons__"] [class*="Slider_"],
+.legacy-content [class*="Progress_progress__"] { display: none !important; }
+/* Hero decorative wave SVG (fixed 1691x1008) -> let it scale, not push width */
+.legacy-content [class*="IndexHeroBlock_section__"] > svg {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; opacity: .4;
+}
+.legacy-content [class*="IndexHeroBlock_section__"] { position: relative; overflow: hidden; }
 
 /* Reveal everything that the original site only shows when JS adds a
    `_visible__` / `_active__` modifier. Without JS those stay at opacity:0
