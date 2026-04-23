@@ -1,7 +1,8 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { ReactNode, useEffect, useRef } from "react";
 import { toast } from "@/hooks/use-toast";
-import { Send } from "lucide-react";
+import { Send, Palette } from "lucide-react";
+import { useAccent } from "@/hooks/use-accent";
 
 const NAV = [
   { to: "/", label: "Главная" },
@@ -23,6 +24,7 @@ interface Props {
 const SiteLayout = ({ children, trapInternalLinks, bare }: Props) => {
   const navigate = useNavigate();
   const contentRef = useRef<HTMLDivElement>(null);
+  const { accent, setAccent } = useAccent();
 
   // Single global handler: rewrite legacy ".html" links into clean React Router routes.
   useEffect(() => {

@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { lazy, Suspense } from "react";
+import { AccentProvider } from "@/hooks/use-accent";
 
 const Login = lazy(() => import("./pages/Login.tsx"));
 const Sitemap = lazy(() => import("./pages/Sitemap.tsx"));
@@ -13,6 +14,7 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
+    <AccentProvider>
     <TooltipProvider>
       <Toaster />
       <Sonner />
@@ -27,6 +29,7 @@ const App = () => (
         </Suspense>
       </BrowserRouter>
     </TooltipProvider>
+    </AccentProvider>
   </QueryClientProvider>
 );
 
