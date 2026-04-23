@@ -1,5 +1,6 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { ReactNode, useEffect, useRef } from "react";
+import { toast } from "@/hooks/use-toast";
 import { Send } from "lucide-react";
 
 const NAV = [
@@ -41,8 +42,19 @@ const SiteLayout = ({ children, trapInternalLinks }: Props) => {
       if (clean === "" || clean === "/index") clean = "/";
       navigate(clean);
     };
+    const onSubmit = (e: Event) => {
+      e.preventDefault();
+      toast({
+        title: "Форма временно недоступна",
+        description: "Свяжитесь с нами через Telegram или VK — ссылки в шапке.",
+      });
+    };
     el.addEventListener("click", onClick);
-    return () => el.removeEventListener("click", onClick);
+    el.addEventListener("submit", onSubmit);
+    return () => {
+      el.removeEventListener("click", onClick);
+      el.removeEventListener("submit", onSubmit);
+    };
   }, [trapInternalLinks, navigate]);
 
   return (

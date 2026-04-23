@@ -119,3 +119,14 @@
   }
   .float-y { animation: float-y 5s ease-in-out infinite; }
 }
+
+/* Legacy mirrored Next.js content — defang dead pieces */
+.legacy-content [class*="Cookie_wrapper__"],
+.legacy-content [class*="FlowBackground_block__"],
+.legacy-content [class*="Header_header__"],
+.legacy-content [class*="Footer_footer__"] {
+  display: none !important;
+}
+.legacy-content img,
+.legacy-content svg { max-width: 100%; height: auto; }
+.legacy-content a { color: inherit; }

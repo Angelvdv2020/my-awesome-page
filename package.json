@@ -7,6 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "build:dev": "vite build --mode development",
+    "build:prod": "vite build && python3 scripts/prerender.py",
+    "extract": "python3 scripts/extract-pages.py",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
