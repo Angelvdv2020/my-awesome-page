@@ -22,7 +22,23 @@ interface Props {
 
 const SiteLayout = ({ children, trapInternalLinks, bare }: Props) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const contentRef = useRef<HTMLDivElement>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname]);
+
+  // Lock body scroll when mobile menu open
+  useEffect(() => {
+    if (mobileOpen) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => { document.body.style.overflow = prev; };
+    }
+  }, [mobileOpen]);
 
   // Single global handler: rewrite legacy ".html" links into clean React Router routes.
   useEffect(() => {
