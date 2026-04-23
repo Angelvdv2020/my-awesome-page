@@ -98,12 +98,22 @@ def extract(html: str, slug: str) -> dict:
     if not meta["og:title"]: meta["og:title"] = title
     if not meta["og:description"]: meta["og:description"] = meta["description"]
 
-    # JSON-LD blocks
+    # JSON-LD blocks — normalize URLs inside
+    def _norm_jsonld(obj):
+        if isinstance(obj, str):
+            # absolute Vortex.ru/upload/* → /site/upload/*
+            obj2 = re.sub(r"https?://(?:www\.)?Vortex\.ru(/upload/[^\s\"'<>]+)", r"/site\1", obj, flags=re.I)
+            # any other Vortex.ru → vortex1.ru canonical
+            obj2 = re.sub(r"https?://(?:www\.)?Vortex\.ru", CANONICAL_HOST, obj2, flags=re.I)
+            return obj2
+        if isinstance(obj, list): return [_norm_jsonld(x) for x in obj]
+        if isinstance(obj, dict): return {k: _norm_jsonld(v) for k, v in obj.items()}
+        return obj
     jsonld = []
     for m in re.finditer(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', html, re.S | re.I):
         raw = m.group(1).strip()
         try:
-            jsonld.append(json.loads(raw))
+            jsonld.append(_norm_jsonld(json.loads(raw)))
         except Exception:
             pass
 
