@@ -387,6 +387,29 @@
     max-height: 280px;
     object-fit: contain;
   }
+  /* Hide the absolutely-positioned hero collage on mobile - it overlaps the text */
+  .legacy-content [class*="IndexHeroBlock_hero__images"] {
+    display: none !important;
+  }
+  /* Make the hero text container readable without the image */
+  .legacy-content [class*="IndexHeroBlock_hero__content"] {
+    background: linear-gradient(135deg, rgba(40, 20, 22, 0.85), rgba(20, 10, 12, 0.7)) !important;
+    padding: 24px !important;
+  }
+  .legacy-content [class*="IndexHeroBlock_section__main"] {
+    min-height: 0 !important;
+  }
+  /* Stack hero side-block (news) below main */
+  .legacy-content [class*="IndexHeroBlock_section__content"] {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+  .legacy-content [class*="IndexHeroBlock_section__main"],
+  .legacy-content [class*="IndexHeroBlock_section__side"] {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
 }
 
 @media (max-width: 380px) {
