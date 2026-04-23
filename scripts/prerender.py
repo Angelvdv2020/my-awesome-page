@@ -43,11 +43,19 @@ def render_meta(page: dict) -> str:
     return "\n    ".join(parts)
 
 def render_body(page: dict) -> str:
-    # Wrap page HTML so SEO bots / first paint show real content; React will replace #root after hydrate.
+    if page.get("version") == 2:
+        title = html_lib.escape(page.get("title") or "VORTEX")
+        desc = html_lib.escape(page.get("description") or "")
+        return (
+            '<div id="root">'
+            '<noscript><div style="padding:1rem;background:#fee;color:#900">Включите JavaScript для полноценной работы сайта.</div></noscript>'
+            f'<main><h1>{title}</h1><p>{desc}</p></main>'
+            '</div>'
+        )
     return (
         '<div id="root">'
         '<noscript><div style="padding:1rem;background:#fee;color:#900">Включите JavaScript для полноценной работы сайта.</div></noscript>'
-        f'<article class="legacy-content">{page["html"]}</article>'
+        f'<article class="legacy-content">{page.get("html","")}</article>'
         '</div>'
     )
 
