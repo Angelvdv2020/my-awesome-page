@@ -209,7 +209,12 @@
   position: relative !important;
 }
 /* Hide slider nav/progress indicators that don't work without JS */
-.legacy-content [class*="Slider_slider__progress__"] { display: none !important; }
+.legacy-content [class*="Slider_slider__progress__"],
+.legacy-content [class*="Slider_slider__buttons__"],
+.legacy-content [class*="Slider_slider__btn__"],
+.legacy-content [class*="Slider_slider__arrow__"],
+.legacy-content [class*="HeroBlock_card__buttons__"] [class*="Slider_"],
+.legacy-content [class*="IndexHeroBlock_card__buttons__"] [class*="Slider_"] { display: none !important; }
 
 /* Reveal everything that the original site only shows when JS adds a
    `_visible__` / `_active__` modifier. Without JS those stay at opacity:0
