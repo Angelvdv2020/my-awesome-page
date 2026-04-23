@@ -1,5 +1,6 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { ReactNode, useEffect, useRef } from "react";
+import { toast } from "@/hooks/use-toast";
 import { Send } from "lucide-react";
 
 const NAV = [
