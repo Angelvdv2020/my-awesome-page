@@ -126,32 +126,17 @@
 .legacy-content a { color: inherit; }
 
 /* Card frames — original site hydrated SVG rect width/height via JS.
-   Without JS the SVG rects stay invisible AND the parent collapses
-   because Card_card__ uses min-height: inherit. We replace the SVG
-   border with a real CSS border + gradient that works at any size. */
+   Without JS the SVG rects stay invisible. Replace with CSS border. */
 .legacy-content [class*="Card_card__"] {
   position: relative;
   border-radius: 16px;
   background: linear-gradient(180deg, hsl(0 0% 100% / 0.04), hsl(0 0% 100% / 0.02));
   border: 1px solid hsl(0 0% 100% / 0.12);
-  min-height: 0;
   overflow: hidden;
 }
-/* The inner full-size wrapper used in original markup */
-.legacy-content [class*="Card_card__"] > div[style*="min-height:inherit"],
-.legacy-content [class*="Card_card__"] > div[style*="min-height: inherit"] {
-  min-height: 0 !important;
-  height: auto !important;
-  position: relative;
-}
-/* Hide the now-redundant SVG vector frames entirely — CSS border replaces them */
+/* Hide the redundant SVG vector frames — CSS border replaces them */
 .legacy-content [class*="Card_card__vector__"] { display: none !important; }
-/* Card content wrappers should size to content */
-.legacy-content [class*="Card_card__content__"] {
-  position: relative;
-  height: auto;
-}
-/* Card background image fills the card */
+/* Card background image fills the card behind content */
 .legacy-content [class*="Card_card__bg__"] {
   position: absolute; inset: 0; z-index: 0;
   border-radius: inherit; overflow: hidden;
@@ -159,10 +144,26 @@
 .legacy-content [class*="Card_card__bg__"] img {
   width: 100%; height: 100%; object-fit: cover;
 }
-.legacy-content [class*="Card_card__"] > div > [class*="Card_card__content__"],
-.legacy-content [class*="Card_card__"] > [class*="Card_card__content__"] {
-  z-index: 1;
+.legacy-content [class*="Card_card__content__"] { position: relative; z-index: 1; }
+
+/* Slider items: original used align-items:stretch + JS-measured heights,
+   so without JS items grow to the tallest slide and leave huge empty space.
+   Force each slide to size to its own content. */
+.legacy-content [class*="Slider_slider__wrapper__"] { align-items: flex-start !important; }
+.legacy-content [class*="Slider_slider__item__"] { height: auto !important; align-self: flex-start !important; }
+
+/* Hero block: without original JS the card stretches; size to content. */
+.legacy-content [class*="HeroBlock_card__"],
+.legacy-content [class*="IndexHeroBlock_card__"] { height: auto !important; min-height: 0 !important; }
+.legacy-content [class*="HeroBlock_card__"] > div[style*="min-height"],
+.legacy-content [class*="IndexHeroBlock_card__"] > div[style*="min-height"] {
+  min-height: 0 !important; height: auto !important;
 }
+
+/* News slider cards on the homepage need an explicit image area */
+.legacy-content [class*="AboutNewsBlock_card__image__"] { aspect-ratio: 16 / 9; min-height: 200px; position: relative; }
+.legacy-content [class*="AboutNewsBlock_card__image__"] > div { height: 100% !important; }
+.legacy-content [class*="AboutNewsBlock_card__"] { height: auto !important; }
 
 /* Next.js shipped many blocks with inline visibility:hidden, expecting JS to flip
    it on mount. Only reveal the main homepage hero wrapper; keep other hidden
