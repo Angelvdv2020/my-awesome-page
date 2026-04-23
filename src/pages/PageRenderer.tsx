@@ -3,15 +3,14 @@ import { useLocation } from "react-router-dom";
 import SiteLayout from "@/components/layout/SiteLayout";
 import { BlockRenderer } from "@/components/blocks/BlockRenderer";
 import manifest from "@/content/pages/_manifest.json";
-import type { AnyPage } from "@/content/types";
-import { isStructured } from "@/content/types";
+import type { StructuredPage } from "@/content/types";
 import NotFound from "./NotFound";
 
 interface ManifestEntry { slug: string; file: string; title: string; description: string }
 
-const loaders = import.meta.glob<{ default: AnyPage }>("../content/pages/*.json");
+const loaders = import.meta.glob<{ default: StructuredPage }>("../content/pages/*.json");
 
-const loadPage = async (slug: string): Promise<AnyPage | null> => {
+const loadPage = async (slug: string): Promise<StructuredPage | null> => {
   const m = (manifest as ManifestEntry[]).find((x) => x.slug === slug);
   if (!m) return null;
   const loader = loaders[`../content/pages/${m.file}`];
@@ -33,10 +32,10 @@ const setMeta = (sel: string, attr: string, value: string) => {
 };
 
 const JSONLD_ID = "vortex-jsonld";
-const updateHead = (data: AnyPage) => {
+const updateHead = (data: StructuredPage) => {
   document.title = data.title || "VORTEX";
   setMeta('meta[name="description"]', "content", data.description);
-  if ((data as { keywords?: string }).keywords) setMeta('meta[name="keywords"]', "content", (data as { keywords?: string }).keywords!);
+  if (data.keywords) setMeta('meta[name="keywords"]', "content", data.keywords);
   setMeta('link[rel="canonical"]', "href", data.canonical);
   setMeta('meta[property="og:title"]', "content", data.og.title);
   setMeta('meta[property="og:description"]', "content", data.og.description);
@@ -56,7 +55,7 @@ const updateHead = (data: AnyPage) => {
 const PageRenderer = () => {
   const { pathname } = useLocation();
   const slug = pathname.replace(/^\/+|\/+$/g, "");
-  const [data, setData] = useState<AnyPage | null | undefined>(undefined);
+  const [data, setData] = useState<StructuredPage | null | undefined>(undefined);
 
   useEffect(() => {
     let cancelled = false;
@@ -75,18 +74,9 @@ const PageRenderer = () => {
   }
   if (data === null) return <NotFound />;
 
-  if (isStructured(data)) {
-    return (
-      <SiteLayout>
-        {data.blocks.map((b, i) => <BlockRenderer key={i} block={b} />)}
-      </SiteLayout>
-    );
-  }
-
-  // legacy fallback while we migrate the rest of the pages
   return (
-    <SiteLayout trapInternalLinks>
-      <article className="legacy-content" dangerouslySetInnerHTML={{ __html: data.html }} />
+    <SiteLayout>
+      {data.blocks.map((b, i) => <BlockRenderer key={i} block={b} />)}
     </SiteLayout>
   );
 };
