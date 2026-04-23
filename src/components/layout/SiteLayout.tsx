@@ -90,6 +90,20 @@ const SiteLayout = ({ children, trapInternalLinks, bare }: Props) => {
             ))}
           </nav>
           <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setAccent(accent === "red" ? "blue" : "red")}
+              aria-label="Сменить цвет акцента"
+              title={accent === "red" ? "Переключить на синий" : "Переключить на красный"}
+              className="p-2 rounded-md hover:bg-white/10 inline-flex items-center gap-2 text-white/80"
+            >
+              <Palette className="w-4 h-4" />
+              <span
+                aria-hidden
+                className="w-3 h-3 rounded-full ring-1 ring-white/30"
+                style={{ background: `hsl(var(--primary))` }}
+              />
+            </button>
             <a href="#" aria-label="VK" className="p-2 rounded-md hover:bg-white/10" title="VK">
               <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white/80"><path d="M12.7 17.3c-5.4 0-8.5-3.7-8.6-9.9h2.7c.1 4.5 2.1 6.4 3.6 6.8V7.4h2.5v3.9c1.5-.2 3.1-1.9 3.6-3.9h2.5a7 7 0 0 1-3.2 4.6c1.6.7 3.6 2.2 4.4 4.7h-2.8c-.6-1.9-2-3.4-4.5-3.6v3.6h-.2z"/></svg>
             </a>
