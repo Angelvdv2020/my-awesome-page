@@ -124,3 +124,16 @@
    DO NOT touch svg/img sizes — original layout depends on intrinsic sizes. */
 .legacy-content [class*="Cookie_wrapper__"] { display: none !important; }
 .legacy-content a { color: inherit; }
+
+/* Restore card frames: Next.js hydrates rect width/height at runtime.
+   Without JS, rect stays at width="-1" (invisible). Force SVG to fill
+   its absolute-positioned wrapper and rect to fill the SVG. */
+.legacy-content [class*="Card_card__vector__"] {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+.legacy-content [class*="Card_card__vector__"] > rect {
+  width: calc(100% - 1px);
+  height: calc(100% - 1px);
+}
