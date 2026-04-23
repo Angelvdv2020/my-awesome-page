@@ -128,8 +128,13 @@
 .legacy-content a { color: inherit; }
 
 /* Card frames — original site hydrated SVG rect width/height via JS.
-   Without JS the SVG rects stay invisible. Replace with CSS border. */
-.legacy-content [class*="Card_card__"] {
+   Without JS the SVG rects stay invisible. Replace with CSS border.
+   IMPORTANT: target ONLY the base Card_card__XXX class, not derived ones
+   like IndexProductCard_card__, PointCard_card__, HeroBlock_card__ etc.
+   We match `Card_card__` only when it appears at the start of a class
+   token (i.e. preceded by start-of-string or whitespace). */
+.legacy-content [class^="Card_card__"]:not([class*="vector"]):not([class*="content"]):not([class*="bg__"]),
+.legacy-content [class*=" Card_card__"]:not([class*="vector"]):not([class*="content"]):not([class*="bg__"]) {
   position: relative;
   border-radius: 16px;
   background: linear-gradient(180deg, hsl(0 0% 100% / 0.04), hsl(0 0% 100% / 0.02));
@@ -138,6 +143,14 @@
 }
 /* Hide the redundant SVG vector frames — CSS border replaces them */
 .legacy-content [class*="Card_card__vector__"] { display: none !important; }
+/* Strip background/border from product/case/hero card wrappers — the inner
+   Card_card__ already has the visible frame. Without this the outer wrapper
+   adds a second, larger ghost border. */
+.legacy-content a[class*="IndexProductCard_card__"],
+.legacy-content [class*="IndexProductCard_card__"]:not(a):not([class*="content"]):not([class*="hover"]):not([class*="corners"]):not([class*="icon"]):not([class*="title"]):not([class*="desc"]) {
+  background: transparent !important;
+  border: none !important;
+}
 /* Card background image fills the card behind content */
 .legacy-content [class*="Card_card__bg__"] {
   position: absolute; inset: 0; z-index: 0;
@@ -263,7 +276,8 @@
 
 /* Any Card_card__ inside a section needs usable min-height so background-only
    cards aren't 0px tall. Exclude PointCard which also matches the substring. */
-.legacy-content section [class*="Card_card__"]:not([class*="HeroBlock_card__"]):not([class*="IndexHeroBlock_"]):not([class*="PointCard_"]) {
+.legacy-content section [class^="Card_card__"]:not([class*="vector"]):not([class*="content"]):not([class*="bg__"]),
+.legacy-content section [class*=" Card_card__"]:not([class*="vector"]):not([class*="content"]):not([class*="bg__"]) {
   min-height: 200px;
 }
 /* PointCard: simple stat block — strip the generic Card frame */
