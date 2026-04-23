@@ -19,7 +19,7 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-[hsl(var(--ink))] text-white flex items-center justify-center p-6 grid-bg">
-      <div className="absolute inset-0 radial-accent opacity-60 pointer-events-none" />
+      <div className="absolute inset-0 radial-red opacity-60 pointer-events-none" />
       <div className="relative w-full max-w-md">
         <Link to="/" className="inline-flex items-center text-sm text-white/60 hover:text-white mb-8">
           <ArrowLeft className="h-4 w-4 mr-2" /> На главную

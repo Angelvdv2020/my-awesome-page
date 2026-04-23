@@ -40,9 +40,9 @@
     --ink: 0 0% 7%;
     --ink-2: 0 0% 12%;
 
-    --gradient-accent: linear-gradient(135deg, hsl(358 85% 52%), hsl(358 95% 62%));
+    --gradient-red: linear-gradient(135deg, hsl(358 85% 52%), hsl(358 95% 62%));
     --gradient-dark: linear-gradient(180deg, hsl(0 0% 7%), hsl(0 0% 12%));
-    --shadow-accent: 0 20px 60px -20px hsl(358 85% 52% / 0.5);
+    --shadow-red: 0 20px 60px -20px hsl(358 85% 52% / 0.5);
     --shadow-elevated: 0 30px 80px -30px hsl(0 0% 0% / 0.25);
   }
 }
@@ -67,11 +67,66 @@
       linear-gradient(90deg, hsl(0 0% 100% / 0.04) 1px, transparent 1px);
     background-size: 56px 56px;
   }
-  .radial-accent {
+  .grid-bg-light {
+    background-image:
+      linear-gradient(hsl(0 0% 0% / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(0 0% 0% / 0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .radial-red {
     background: radial-gradient(60% 60% at 80% 20%, hsl(358 85% 52% / 0.35) 0%, transparent 60%),
                 radial-gradient(50% 50% at 10% 90%, hsl(358 85% 52% / 0.18) 0%, transparent 60%);
+  }
+  .diag-stripes {
+    background-image: repeating-linear-gradient(
+      135deg,
+      hsl(358 85% 52% / 0.08) 0 2px,
+      transparent 2px 14px
+    );
+  }
+  .text-gradient-red {
+    background: var(--gradient-red);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
   .ring-glow {
     box-shadow: 0 0 0 1px hsl(358 85% 52% / 0.3), 0 0 40px hsl(358 85% 52% / 0.25);
   }
+  .corner-cut {
+    clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%);
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+  }
+  .pulse-dot { animation: pulse-dot 1.6s ease-in-out infinite; }
+
+  @keyframes scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+  .scan-line::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent, hsl(358 85% 52% / 0.15), transparent);
+    animation: scan 6s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes float-y {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .float-y { animation: float-y 5s ease-in-out infinite; }
 }
+
+/* Legacy mirrored Next.js content — defang dead pieces */
+.legacy-content [class*="Cookie_wrapper__"],
+.legacy-content [class*="FlowBackground_block__"],
+.legacy-content [class*="Header_header__"],
+.legacy-content [class*="Footer_footer__"] {
+  display: none !important;
+}
+.legacy-content img,
+.legacy-content svg { max-width: 100%; height: auto; }
+.legacy-content a { color: inherit; }
