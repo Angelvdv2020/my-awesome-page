@@ -137,3 +137,17 @@
   width: calc(100% - 1px);
   height: calc(100% - 1px);
 }
+
+/* Next.js shipped many blocks with inline visibility:hidden, expecting JS to flip
+   it on mount. Without JS we override so content is visible. */
+.legacy-content [style*="visibility:hidden"],
+.legacy-content [style*="visibility: hidden"] {
+  visibility: visible !important;
+}
+/* Hide the fixed full-screen FlowBackground canvas wrapper (it's empty without JS) */
+.legacy-content [class*="FlowBackground_block__"] { display: none !important; }
+/* Hide original Header/Footer — we render our own VORTEX layout */
+.legacy-content [class*="Header_header__"],
+.legacy-content [class*="Footer_footer__"],
+.legacy-content [class*="Header_section__"],
+.legacy-content [class*="Footer_section__"] { display: none !important; }
