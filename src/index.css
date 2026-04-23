@@ -286,3 +286,81 @@
 /* Empty video sections (VK iframe wrapper) need a min-height */
 .legacy-content [class*="ContentBlockVideo_section__"] { min-height: 200px; }
 .legacy-content iframe { max-width: 100%; }
+
+/* ============================================================
+   Responsive adaptation for legacy Next.js content.
+   ============================================================ */
+.legacy-content { max-width: 100%; overflow-x: hidden; }
+.legacy-content img,
+.legacy-content video,
+.legacy-content svg { max-width: 100%; height: auto; }
+.legacy-content [class*="Card_card__bg__"] img { height: 100%; }
+
+@media (max-width: 1024px) {
+  .legacy-content [class*="IndexPoints_section__content__"],
+  .legacy-content [class*="IndexSolutions_section__all__"],
+  .legacy-content [class*="AboutNewsBlock_section__all__"],
+  .legacy-content [class*="NewsBlock_section__all__"] {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+    gap: 16px !important;
+  }
+  .legacy-content [class*="Slider_slider__wrapper__"] { gap: 16px !important; }
+  .legacy-content [class*="HeroBlock_card__"],
+  .legacy-content [class*="IndexHeroBlock_card__"] { padding: 24px !important; }
+}
+
+@media (max-width: 640px) {
+  .legacy-content [class*="IndexPoints_section__content__"],
+  .legacy-content [class*="IndexSolutions_section__all__"],
+  .legacy-content [class*="IndexProducts_section__"] [class*="Slider_slider__wrapper__"],
+  .legacy-content [class*="ServiceCase_section__"] [class*="Slider_slider__wrapper__"],
+  .legacy-content [class*="CasesBlock_section__"] [class*="Slider_slider__wrapper__"],
+  .legacy-content [class*="AboutNewsBlock_section__all__"],
+  .legacy-content [class*="NewsBlock_section__all__"] {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+  .legacy-content [class*="Slider_slider__item__"] { width: 100% !important; max-width: 100% !important; }
+  .legacy-content [class*="HeroBlock_card__"],
+  .legacy-content [class*="IndexHeroBlock_card__"],
+  .legacy-content [class*="Card_card__content__"] { padding: 20px !important; }
+  .legacy-content h1,
+  .legacy-content [class*="HeroBlock_title__"],
+  .legacy-content [class*="IndexHeroBlock_title__"] {
+    font-size: clamp(1.6rem, 7vw, 2.2rem) !important;
+    line-height: 1.15 !important;
+  }
+  .legacy-content h2,
+  .legacy-content [class*="_section__title__"],
+  .legacy-content [class*="_block__title__"] {
+    font-size: clamp(1.3rem, 5.5vw, 1.7rem) !important;
+    line-height: 1.2 !important;
+  }
+  .legacy-content [class*="PointCard_card__title__"],
+  .legacy-content [class*="PointCard_card__number__"] {
+    font-size: clamp(1.6rem, 8vw, 2.4rem) !important;
+  }
+  .legacy-content section { padding-top: 32px !important; padding-bottom: 32px !important; }
+  .legacy-content [class*="container"],
+  .legacy-content [class*="Container_"] {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  .legacy-content [class*="Button_button__"] { width: 100%; justify-content: center; }
+  .legacy-content [class*="ContactForm_"] [class*="row__"],
+  .legacy-content [class*="ContactForm_"] [class*="grid__"] {
+    grid-template-columns: 1fr !important;
+    display: grid !important;
+    gap: 12px !important;
+  }
+  .legacy-content [class*="HeroBlock_card__"] img,
+  .legacy-content [class*="IndexHeroBlock_card__"] img {
+    max-height: 280px;
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 380px) {
+  .legacy-content h1 { font-size: 1.5rem !important; }
+  .legacy-content h2 { font-size: 1.2rem !important; }
+}

@@ -1,7 +1,7 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import { ReactNode, useEffect, useRef } from "react";
+import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { toast } from "@/hooks/use-toast";
-import { Send } from "lucide-react";
+import { Send, Menu, X } from "lucide-react";
 
 const NAV = [
   { to: "/", label: "Главная" },
@@ -22,7 +22,23 @@ interface Props {
 
 const SiteLayout = ({ children, trapInternalLinks, bare }: Props) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const contentRef = useRef<HTMLDivElement>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname]);
+
+  // Lock body scroll when mobile menu open
+  useEffect(() => {
+    if (mobileOpen) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => { document.body.style.overflow = prev; };
+    }
+  }, [mobileOpen]);
 
   // Single global handler: rewrite legacy ".html" links into clean React Router routes.
   useEffect(() => {
@@ -66,19 +82,19 @@ const SiteLayout = ({ children, trapInternalLinks, bare }: Props) => {
   return (
     <div className="min-h-screen bg-[hsl(var(--ink))] text-white flex flex-col">
       <header className="sticky top-0 z-40 backdrop-blur bg-[hsl(var(--ink))]/80 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 font-black text-xl tracking-tight">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-2">
+          <Link to="/" className="flex items-center gap-2 font-black text-xl tracking-tight shrink-0">
             <span className="inline-block w-2 h-2 rounded-full bg-primary shadow-[0_0_12px_hsl(var(--primary))]" />
             VORTEX
           </Link>
-          <nav className="hidden md:flex items-center gap-1 text-sm">
+          <nav className="hidden lg:flex items-center gap-1 text-sm">
             {NAV.map((n) => (
               <NavLink
                 key={n.to}
                 to={n.to}
                 end={n.to === "/"}
                 className={({ isActive }) =>
-                  `px-3 py-2 rounded-md transition ${
+                  `px-3 py-2 rounded-md transition whitespace-nowrap ${
                     isActive ? "text-white bg-white/10" : "text-white/70 hover:text-white hover:bg-white/5"
                   }`
                 }
@@ -87,21 +103,60 @@ const SiteLayout = ({ children, trapInternalLinks, bare }: Props) => {
               </NavLink>
             ))}
           </nav>
-          <div className="flex items-center gap-2">
-            <a href="#" aria-label="VK" className="p-2 rounded-md hover:bg-white/10" title="VK">
+          <div className="flex items-center gap-1 sm:gap-2">
+            <a href="#" aria-label="VK" className="hidden sm:inline-flex p-2 rounded-md hover:bg-white/10" title="VK">
               <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white/80"><path d="M12.7 17.3c-5.4 0-8.5-3.7-8.6-9.9h2.7c.1 4.5 2.1 6.4 3.6 6.8V7.4h2.5v3.9c1.5-.2 3.1-1.9 3.6-3.9h2.5a7 7 0 0 1-3.2 4.6c1.6.7 3.6 2.2 4.4 4.7h-2.8c-.6-1.9-2-3.4-4.5-3.6v3.6h-.2z"/></svg>
             </a>
-            <a href="#" aria-label="Telegram" className="p-2 rounded-md hover:bg-white/10" title="Telegram">
+            <a href="#" aria-label="Telegram" className="hidden sm:inline-flex p-2 rounded-md hover:bg-white/10" title="Telegram">
               <Send className="w-4 h-4" />
             </a>
             <Link
               to="/login"
-              className="ml-2 inline-flex items-center px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90"
+              className="ml-1 sm:ml-2 inline-flex items-center px-3 sm:px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90"
             >
               Войти
             </Link>
+            <button
+              type="button"
+              aria-label={mobileOpen ? "Закрыть меню" : "Открыть меню"}
+              aria-expanded={mobileOpen}
+              onClick={() => setMobileOpen((v) => !v)}
+              className="lg:hidden ml-1 p-2 rounded-md hover:bg-white/10"
+            >
+              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
           </div>
         </div>
+        {/* Mobile / tablet drawer */}
+        {mobileOpen && (
+          <div className="lg:hidden border-t border-white/10 bg-[hsl(var(--ink))]/95 backdrop-blur">
+            <nav className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-col">
+              {NAV.map((n) => (
+                <NavLink
+                  key={n.to}
+                  to={n.to}
+                  end={n.to === "/"}
+                  onClick={() => setMobileOpen(false)}
+                  className={({ isActive }) =>
+                    `px-3 py-3 rounded-md text-base ${
+                      isActive ? "text-white bg-white/10" : "text-white/80 hover:text-white hover:bg-white/5"
+                    }`
+                  }
+                >
+                  {n.label}
+                </NavLink>
+              ))}
+              <div className="flex items-center gap-2 px-3 pt-3 mt-2 border-t border-white/10 sm:hidden">
+                <a href="#" aria-label="VK" className="p-2 rounded-md hover:bg-white/10" title="VK">
+                  <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white/80"><path d="M12.7 17.3c-5.4 0-8.5-3.7-8.6-9.9h2.7c.1 4.5 2.1 6.4 3.6 6.8V7.4h2.5v3.9c1.5-.2 3.1-1.9 3.6-3.9h2.5a7 7 0 0 1-3.2 4.6c1.6.7 3.6 2.2 4.4 4.7h-2.8c-.6-1.9-2-3.4-4.5-3.6v3.6h-.2z"/></svg>
+                </a>
+                <a href="#" aria-label="Telegram" className="p-2 rounded-md hover:bg-white/10" title="Telegram">
+                  <Send className="w-5 h-5" />
+                </a>
+              </div>
+            </nav>
+          </div>
+        )}
       </header>
 
       <main ref={contentRef} className="flex-1 relative grid-bg">
@@ -110,7 +165,7 @@ const SiteLayout = ({ children, trapInternalLinks, bare }: Props) => {
       </main>
 
       <footer className="border-t border-white/10 mt-12">
-        <div className="max-w-7xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-6 text-sm text-white/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 grid sm:grid-cols-2 md:grid-cols-3 gap-6 text-sm text-white/60">
           <div>
             <div className="font-black text-white text-lg mb-2">VORTEX</div>
             <p>Маршрутизаторы и VPN-сервисы для бизнеса.</p>
