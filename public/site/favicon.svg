@@ -1,14 +1,1 @@
-<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-     viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#3C3C3C;}
-	.st1{fill:#EE3C3C;}
-</style>
-    <rect class="st0" width="16" height="16"/>
-    <g>
-	<g>
-		<path class="st1" d="M9.67,1.29c2.98,0,4.58,1.49,4.58,4.14c0,2.11-0.97,3.46-2.79,3.97l3.27,5.24h-3.02L8.61,9.62h-4.6v5.01H1.3
-			V1.29H9.67z M11.53,5.22c0-1.14-0.62-1.9-2.22-1.9h-5.3v4.26h5.3c1.59,0,2.22-0.75,2.22-1.88V5.22z"/>
-	</g>
-</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 32"><defs><linearGradient id="vg" x1="0" x2="1"><stop offset="0" stop-color="#ff0032"/><stop offset="1" stop-color="#ff5577"/></linearGradient></defs><circle cx="16" cy="16" r="10" fill="none" stroke="url(#vg)" stroke-width="3"/><circle cx="16" cy="16" r="3" fill="url(#vg)"/><text x="34" y="22" font-family="system-ui,sans-serif" font-weight="900" font-size="20" fill="#fff" letter-spacing="1">VORTEX</text></svg>

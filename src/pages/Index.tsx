@@ -1,18 +1,25 @@
-import { Button } from "@/components/ui/button";
-import { ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   return (
-    <div className="relative w-screen h-screen">
-      <Button asChild size="sm" className="absolute top-3 right-3 z-10 shadow-lg">
-        <a href="/site/index.html" target="_blank" rel="noopener noreferrer">
-          <ExternalLink className="mr-2 h-4 w-4" />
-          Открыть в отдельном окне
+    <div className="relative w-screen h-screen bg-[hsl(var(--ink))]">
+      <div className="absolute top-3 right-3 z-10 flex gap-2">
+        <a
+          href="/sitemap"
+          className="inline-flex items-center px-4 py-2 rounded-md bg-white/10 text-white text-sm font-medium hover:bg-white/20 backdrop-blur"
+        >
+          Все страницы
         </a>
-      </Button>
+        <Link
+          to="/login"
+          className="inline-flex items-center px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 shadow-lg"
+        >
+          Войти
+        </Link>
+      </div>
       <iframe
         src="/site/index.html"
-        title="RED Security"
+        title="Vortex"
         className="w-full h-full border-0 block"
       />
     </div>
