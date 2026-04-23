@@ -158,3 +158,30 @@
 .legacy-content [class*="EventCalendar_"],
 .legacy-content [class*="Modal_"],
 .legacy-content [class*="Popup_"] { display: none !important; }
+
+/* JS-only sliders: without JS only first slide is visible and overflow:hidden
+   clips the rest. Convert to horizontal scroll so users can see all slides. */
+.legacy-content [class*="Slider_slider__wrap__"],
+.legacy-content [class*="Slider_slider__container__"] {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.legacy-content [class*="Slider_slider__wrapper__"] {
+  transform: none !important;
+  display: flex !important;
+  gap: 16px;
+}
+.legacy-content [class*="Slider_slider__item__"] {
+  scroll-snap-align: start;
+  flex: 0 0 auto;
+}
+
+/* Inline opacity:0 fade-in wrappers (Next.js animates to 1 on mount) */
+.legacy-content [style*="opacity:0"],
+.legacy-content [style*="opacity: 0"] { opacity: 1 !important; }
+
+/* Empty video sections (e.g. VK iframe wrapper) need a min-height */
+.legacy-content [class*="ContentBlockVideo_section__"] { min-height: 200px; }
+.legacy-content iframe { max-width: 100%; }
