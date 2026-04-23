@@ -1,0 +1,257 @@
+[
+  {
+    "slug": "news",
+    "file": "news.json",
+    "title": "Новости"
+  },
+  {
+    "slug": "zapros-konsultatsii",
+    "file": "zapros-konsultatsii.json",
+    "title": "Войти"
+  },
+  {
+    "slug": "services",
+    "file": "services.json",
+    "title": "Сервисы"
+  },
+  {
+    "slug": "komplaens-i-delovaya-etika",
+    "file": "komplaens-i-delovaya-etika.json",
+    "title": "Комплаенс и деловая этика"
+  },
+  {
+    "slug": "solutions",
+    "file": "solutions.json",
+    "title": "Решения"
+  },
+  {
+    "slug": "soglashenie-na-predostavlenie-servisa-anti-ddos",
+    "file": "soglashenie-na-predostavlenie-servisa-anti-ddos.json",
+    "title": "Соглашение на предоставление сервиса Анти-DdoS"
+  },
+  {
+    "slug": "contacts",
+    "file": "contacts.json",
+    "title": "Контакты Vortex"
+  },
+  {
+    "slug": "soglashenie-na-predostavlenie-servisa-mnogofaktornaya-autentifikatsiya-mfa-saas",
+    "file": "soglashenie-na-predostavlenie-servisa-mnogofaktornaya-autentifikatsiya-mfa-saas.json",
+    "title": "Соглашение на предоставление сервиса «Многофакторная аутентификация (MFA)» (SaaS)"
+  },
+  {
+    "slug": "events",
+    "file": "events.json",
+    "title": "События"
+  },
+  {
+    "slug": "about",
+    "file": "about.json",
+    "title": "О нас"
+  },
+  {
+    "slug": "contact-us",
+    "file": "contact-us.json",
+    "title": "Связаться с нами"
+  },
+  {
+    "slug": "soglashenie-na-predostavlenie-servisa-otpravka-sms-soobshcheniy-dlya-autentifikatsii-polzovateley",
+    "file": "soglashenie-na-predostavlenie-servisa-otpravka-sms-soobshcheniy-dlya-autentifikatsii-polzovateley.json",
+    "title": "Соглашение на предоставление сервиса «Отправка SMS-сообщений для аутентификации пользователей»"
+  },
+  {
+    "slug": "",
+    "file": "home.json",
+    "title": "Vortex— проактивная защита от сетевых угроз"
+  },
+  {
+    "slug": "documents",
+    "file": "documents.json",
+    "title": "Материалы и документы"
+  },
+  {
+    "slug": "soglashenie-na-predostavlenie-servisa-mnogofaktornaya-autentifikatsiya-mfa",
+    "file": "soglashenie-na-predostavlenie-servisa-mnogofaktornaya-autentifikatsiya-mfa.json",
+    "title": "Соглашение на предоставление сервиса «Многофакторная аутентификация (MFA)»"
+  },
+  {
+    "slug": "services/deception",
+    "file": "services__deception.json",
+    "title": "Deception Раннее обнаружение направленных атак"
+  },
+  {
+    "slug": "services/red-soc",
+    "file": "services__red-soc.json",
+    "title": "RED NOC – Центр управления сетью"
+  },
+  {
+    "slug": "services/servis-sifrovaniia-kanalov-sviazi-gost",
+    "file": "services__servis-sifrovaniia-kanalov-sviazi-gost.json",
+    "title": "Сервис шифрования каналов связи (ГОСТ)"
+  },
+  {
+    "slug": "services/antibot",
+    "file": "services__antibot.json",
+    "title": "Сервис защиты веб-сайтов и API от ботов (Antibot)"
+  },
+  {
+    "slug": "services/zashhita-ot-ddos-atak",
+    "file": "services__zashhita-ot-ddos-atak.json",
+    "title": "Защита от перегрузок канала"
+  },
+  {
+    "slug": "services/index",
+    "file": "services__index.json",
+    "title": "Сервисы"
+  },
+  {
+    "slug": "services/mfa",
+    "file": "services__mfa.json",
+    "title": "Многофакторная аутентификация (MFA) | Сервис Vortex"
+  },
+  {
+    "slug": "services/security-awareness",
+    "file": "services__security-awareness.json",
+    "title": "Сервис Security Awareness повышения цифровая грамотность сотрудников"
+  },
+  {
+    "slug": "services/waf",
+    "file": "services__waf.json",
+    "title": "Сервис защиты веб-приложений (WAF)"
+  },
+  {
+    "slug": "services/security-assessment",
+    "file": "services__security-assessment.json",
+    "title": "Security Assessment"
+  },
+  {
+    "slug": "services/mdr",
+    "file": "services__mdr.json",
+    "title": "Расширенный мониторинг и нейтрализация инцидентов сети"
+  },
+  {
+    "slug": "services/edr",
+    "file": "services__edr.json",
+    "title": "Endpoint Detection &amp; Response Защита конечных точек"
+  },
+  {
+    "slug": "services/siem",
+    "file": "services__siem.json",
+    "title": "SIEM Мониторинг и реагирование на события безопасности сети"
+  },
+  {
+    "slug": "solutions/servisy-kiberbezopasnosti-mss",
+    "file": "solutions__servisy-kiberbezopasnosti-mss.json",
+    "title": "Сервисы сетевая защита (MSS) | Vortex"
+  },
+  {
+    "slug": "solutions/monitoring-i-reagirovanie-na-kiberintsidenty",
+    "file": "solutions__monitoring-i-reagirovanie-na-kiberintsidenty.json",
+    "title": "Мониторинг и реагирование на сетевой инцидент | Vortex"
+  },
+  {
+    "slug": "solutions/integratsionnye-resheniya",
+    "file": "solutions__integratsionnye-resheniya.json",
+    "title": "Интеграционные решения | Vortex"
+  },
+  {
+    "slug": "webinars/ty-prikhodish-ko-mne-prosit-byudzhet-na-ib-no",
+    "file": "webinars__ty-prikhodish-ko-mne-prosit-byudzhet-na-ib-no.json",
+    "title": "Ты приходишь ко мне просить бюджет на сети, но... | Мероприятия Vortex"
+  },
+  {
+    "slug": "webinars/osint-boyatsya-v-internet-ne-khodit",
+    "file": "webinars__osint-boyatsya-v-internet-ne-khodit.json",
+    "title": "OSINT бояться – в интернет не ходить. Прокачай поисковые скиллы до 80 lvl | Мероприятия Vortex"
+  },
+  {
+    "slug": "webinars/okhotniki-za-veb-ugrozami-kiberzashchita-v-sezon-vspleska-trafika",
+    "file": "webinars__okhotniki-za-veb-ugrozami-kiberzashchita-v-sezon-vspleska-trafika.json",
+    "title": "Охотники за веб-угрозами: киберзащита в сезон всплеска трафика | Мероприятия Vortex"
+  },
+  {
+    "slug": "webinars/ib-detoks-fokus-na-neobkhodimykh-sredstvakh-zashchity",
+    "file": "webinars__ib-detoks-fokus-na-neobkhodimykh-sredstvakh-zashchity.json",
+    "title": "сети-детокс: фокус на необходимых средствах защиты | Мероприятия Vortex"
+  },
+  {
+    "slug": "webinars/efir-am-live-ekosistema-kiberbezopasnosti",
+    "file": "webinars__efir-am-live-ekosistema-kiberbezopasnosti.json",
+    "title": "Эфир AM Live «Экосистема сетевая защита» | Мероприятия Vortex"
+  },
+  {
+    "slug": "webinars/v-mire-nevyuchennykh-kiberurokov",
+    "file": "webinars__v-mire-nevyuchennykh-kiberurokov.json",
+    "title": "В мире невыученных киберуроков | Мероприятия Vortex"
+  },
+  {
+    "slug": "webinars/emotsionalnyy-vzlom-pochemu-doverchivost-stanovitsya-glavnoy-uyazvimostyu-biznesa",
+    "file": "webinars__emotsionalnyy-vzlom-pochemu-doverchivost-stanovitsya-glavnoy-uyazvimostyu-biznesa.json",
+    "title": "Эмоциональный взлом: почему доверчивость становится главной уязвимостью бизнеса  | Мероприятия Vortex"
+  },
+  {
+    "slug": "webinars/kiberbezopasnost-srednego-i-malogo-biznesa",
+    "file": "webinars__kiberbezopasnost-srednego-i-malogo-biznesa.json",
+    "title": "сетевая защита среднего и малого бизнеса | Мероприятия Vortex"
+  },
+  {
+    "slug": "webinars/lyubimye-kibegrabli-nachinayushchego-ciso",
+    "file": "webinars__lyubimye-kibegrabli-nachinayushchego-ciso.json",
+    "title": "Любимые цифровая грамотность начинающего CISO"
+  },
+  {
+    "slug": "webinars/soc-forum-novyy-uroven",
+    "file": "webinars__soc-forum-novyy-uroven.json",
+    "title": "Внешнее мероприятие NOC Forum «Новый уровень», Москва | Мероприятия Vortex"
+  },
+  {
+    "slug": "webinars/vne-zony-vidimosti-pochemu-ataki-obkhodyat-waf",
+    "file": "webinars__vne-zony-vidimosti-pochemu-ataki-obkhodyat-waf.json",
+    "title": "Вне зоны видимости: почему атаки обходят WAF  | Мероприятия Vortex"
+  },
+  {
+    "slug": "webinars/kiber-dzhitsu",
+    "file": "webinars__kiber-dzhitsu.json",
+    "title": "Кибер-джицу: Уход от болевых перегрузок канала и других грязных приёмов | Мероприятия Vortex"
+  },
+  {
+    "slug": "webinars/vremya-reagirovat-na-kiberataki-vchera-proaktivnaya-zashchita-soc-na-primere-keysov",
+    "file": "webinars__vremya-reagirovat-na-kiberataki-vchera-proaktivnaya-zashchita-soc-na-primere-keysov.json",
+    "title": "Время реагировать на сетевую атаку – вчера: проактивная защита NOC на примере кейсовВремя реагировать на сетевую атаку – вчера: проактивная защита NOC на примере кейсов | Мероприятия Vortex"
+  },
+  {
+    "slug": "webinars/positive-hack-days-2025",
+    "file": "webinars__positive-hack-days-2025.json",
+    "title": "Positive Hack Days 2025 | Мероприятия Vortex"
+  },
+  {
+    "slug": "webinars/kto-ne-shifruetsya-ya-ne-vinovat",
+    "file": "webinars__kto-ne-shifruetsya-ya-ne-vinovat.json",
+    "title": "Кто не шифруется – я не виноват. Защищаем данные компании и расстраиваем хакеров при помощи ГОСТ VPN | Мероприятия Vortex"
+  },
+  {
+    "slug": "webinars/forum-territoriya-bezopasnosti-2026",
+    "file": "webinars__forum-territoriya-bezopasnosti-2026.json",
+    "title": "Форум ТЕРРИТОРИЯ БЕЗОПАСНОСТИ 2026 | Мероприятия Vortex"
+  },
+  {
+    "slug": "webinars/forum-territoriya-bezopasnosti-2025",
+    "file": "webinars__forum-territoriya-bezopasnosti-2025.json",
+    "title": "27-й Большой Национальный форум безопасности сети «Инфофорум-2025"
+  },
+  {
+    "slug": "webinars/skelety-v-shkafu",
+    "file": "webinars__skelety-v-shkafu.json",
+    "title": "Скелеты в шкафу: неожиданные находки при подключении к NOC | Мероприятия Vortex"
+  },
+  {
+    "slug": "webinars/ministerstvo-kiberbezopasnykh-del",
+    "file": "webinars__ministerstvo-kiberbezopasnykh-del.json",
+    "title": "Министерство кибербезопасных дел: как работает NOC во время инцидентов | Мероприятия Vortex"
+  },
+  {
+    "slug": "webinars/cyber-kombat-doveryat-tekhnologiyam-ili-lyudyam",
+    "file": "webinars__cyber-kombat-doveryat-tekhnologiyam-ili-lyudyam.json",
+    "title": "CYBER KOMBAT: доверять технологиям или людям? | Мероприятия Vortex"
+  }
+]
