@@ -83,25 +83,10 @@ export const updateHead = (data: PageData) => {
   });
 };
 
-const fixLegacySvgRects = (root: HTMLElement | null) => {
-  if (!root) return;
-  root.querySelectorAll('svg[class*="Card_card__vector__"]').forEach((svg) => {
-    const el = svg as SVGSVGElement;
-    el.removeAttribute("width");
-    el.removeAttribute("height");
-    el.setAttribute("preserveAspectRatio", "none");
-    const parent = el.parentElement as HTMLElement | null;
-    const w = parent?.clientWidth ?? 0;
-    const h = parent?.clientHeight ?? 0;
-    if (w > 0 && h > 0) {
-      el.setAttribute("viewBox", `0 0 ${w} ${h}`);
-      el.querySelectorAll("rect").forEach((r) => {
-        r.setAttribute("width", String(Math.max(0, w - 1)));
-        r.setAttribute("height", String(Math.max(0, h - 1)));
-      });
-    }
-  });
-};
+// Card frames are now styled via CSS in index.css (see .legacy-content
+// [class*="Card_card__"]). The original Next.js JS that hydrated SVG rect
+// sizes is intentionally NOT re-implemented — CSS borders work at any size
+// without resize observers and don't leave empty space when JS is absent.
 
 const PageRenderer = () => {
   const { pathname } = useLocation();
@@ -121,19 +106,6 @@ const PageRenderer = () => {
     if (data) updateHead(data);
   }, [data]);
 
-  useEffect(() => {
-    if (!data) return;
-    const root = articleRef.current;
-    fixLegacySvgRects(root);
-    const onResize = () => fixLegacySvgRects(root);
-    window.addEventListener("resize", onResize);
-    const t1 = window.setTimeout(() => fixLegacySvgRects(root), 100);
-    const t2 = window.setTimeout(() => fixLegacySvgRects(root), 500);
-    return () => {
-      window.removeEventListener("resize", onResize);
-      clearTimeout(t1); clearTimeout(t2);
-    };
-  }, [data, pathname]);
 
   if (data === undefined) {
     return <SiteLayout><div className="h-[60vh]" /></SiteLayout>;
