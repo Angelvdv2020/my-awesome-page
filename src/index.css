@@ -247,9 +247,26 @@
 }
 
 /* Any Card_card__ inside a section needs usable min-height so background-only
-   cards aren't 0px tall */
-.legacy-content section [class*="Card_card__"]:not([class*="HeroBlock_card__"]):not([class*="IndexHeroBlock_"]) {
+   cards aren't 0px tall. Exclude PointCard which also matches the substring. */
+.legacy-content section [class*="Card_card__"]:not([class*="HeroBlock_card__"]):not([class*="IndexHeroBlock_"]):not([class*="PointCard_"]) {
   min-height: 200px;
+}
+/* PointCard: simple stat block — strip the generic Card frame */
+.legacy-content [class*="PointCard_card__"] {
+  background: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+}
+.legacy-content [class*="PointCard_card__glow__"] {
+  height: 2px; background: hsl(var(--primary));
+  box-shadow: 0 0 10px hsl(var(--primary)); margin: 12px 0 19px;
+}
+.legacy-content [class*="IndexPoints_section__content__"] {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 32px !important;
 }
 
 /* News / product / case grids */
