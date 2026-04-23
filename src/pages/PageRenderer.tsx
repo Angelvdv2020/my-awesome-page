@@ -83,7 +83,7 @@ const PageRenderer = () => {
   if (data === null) return <NotFound />;
 
   return (
-    <SiteLayout trapInternalLinks>
+    <SiteLayout trapInternalLinks bare>
       <article className="legacy-content" dangerouslySetInnerHTML={{ __html: data.html }} />
     </SiteLayout>
   );

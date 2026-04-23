@@ -16,6 +16,8 @@ interface Props {
   children: ReactNode;
   /** When true, content is rendered as raw HTML (legacy pages). Layout intercepts internal link clicks. */
   trapInternalLinks?: boolean;
+  /** When true, render only the content with no header/footer/background (legacy pages bring their own). */
+  bare?: boolean;
 }
 
 const SiteLayout = ({ children, trapInternalLinks }: Props) => {
