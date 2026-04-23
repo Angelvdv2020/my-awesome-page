@@ -49,12 +49,14 @@
 
 @layer base {
   * { @apply border-border; }
+  html, body { overflow-x: hidden; max-width: 100vw; }
   html { scroll-behavior: smooth; }
   body {
     @apply bg-background text-foreground;
     font-family: 'Manrope', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
+  img, svg, video, iframe { max-width: 100%; }
 }
 
 @layer utilities {
@@ -207,7 +209,20 @@
   position: relative !important;
 }
 /* Hide slider nav/progress indicators that don't work without JS */
-.legacy-content [class*="Slider_slider__progress__"] { display: none !important; }
+.legacy-content [class*="Slider_slider__progress__"],
+.legacy-content [class*="Slider_slider__buttons__"],
+.legacy-content [class*="Slider_slider__btn__"],
+.legacy-content [class*="Slider_slider__arrow__"],
+.legacy-content [class*="HeroBlock_card__buttons__"] [class*="Slider_"],
+.legacy-content [class*="HeroBlock_card__buttons__"] [class*="Slider_"],
+.legacy-content [class*="IndexHeroBlock_card__buttons__"] [class*="Slider_"],
+.legacy-content [class*="Progress_progress__"] { display: none !important; }
+/* Hero decorative wave SVG (fixed 1691x1008) -> let it scale, not push width */
+.legacy-content [class*="IndexHeroBlock_section__"] > svg {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; opacity: .4;
+}
+.legacy-content [class*="IndexHeroBlock_section__"] { position: relative; overflow: hidden; }
 
 /* Reveal everything that the original site only shows when JS adds a
    `_visible__` / `_active__` modifier. Without JS those stay at opacity:0
@@ -307,6 +322,20 @@
   .legacy-content [class*="Slider_slider__wrapper__"] { gap: 16px !important; }
   .legacy-content [class*="HeroBlock_card__"],
   .legacy-content [class*="IndexHeroBlock_card__"] { padding: 24px !important; }
+  /* Events / News listings with fixed sidebar — stack vertically */
+  .legacy-content [class*="Events_section__layout__"],
+  .legacy-content [class*="News_section__layout__"] {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+  }
+  .legacy-content [class*="ListFilter_filters__"] { width: 100% !important; max-width: 100% !important; position: static !important; }
+  .legacy-content [class*="Events_section__list__"],
+  .legacy-content [class*="News_section__list__"] { width: 100% !important; max-width: 100% !important; }
+  .legacy-content [class*="Events_section__item__"] {
+    display: flex !important;
+    flex-direction: column !important;
+  }
 }
 
 @media (max-width: 640px) {
