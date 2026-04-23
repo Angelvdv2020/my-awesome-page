@@ -16,9 +16,11 @@ interface Props {
   children: ReactNode;
   /** When true, content is rendered as raw HTML (legacy pages). Layout intercepts internal link clicks. */
   trapInternalLinks?: boolean;
+  /** When true, render only the content with no header/footer/background (legacy pages bring their own). */
+  bare?: boolean;
 }
 
-const SiteLayout = ({ children, trapInternalLinks }: Props) => {
+const SiteLayout = ({ children, trapInternalLinks, bare }: Props) => {
   const navigate = useNavigate();
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -56,6 +58,10 @@ const SiteLayout = ({ children, trapInternalLinks }: Props) => {
       el.removeEventListener("submit", onSubmit);
     };
   }, [trapInternalLinks, navigate]);
+
+  if (bare) {
+    return <div ref={contentRef}>{children}</div>;
+  }
 
   return (
     <div className="min-h-screen bg-[hsl(var(--ink))] text-white flex flex-col">
