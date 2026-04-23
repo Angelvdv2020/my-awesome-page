@@ -139,9 +139,11 @@
 }
 
 /* Next.js shipped many blocks with inline visibility:hidden, expecting JS to flip
-   it on mount. Without JS we override so content is visible. */
-.legacy-content [style*="visibility:hidden"],
-.legacy-content [style*="visibility: hidden"] {
+   it on mount. Only reveal the main homepage hero wrapper; keep other hidden
+   interactive overlays (calendar/modals/popups) hidden. */
+.legacy-content .IndexHeroBlock_section__yx4DT,
+.legacy-content .IndexHeroBlock_section__yx4DT [style*="visibility:hidden"],
+.legacy-content .IndexHeroBlock_section__yx4DT [style*="visibility: hidden"] {
   visibility: visible !important;
 }
 /* Hide the fixed full-screen FlowBackground canvas wrapper (it's empty without JS) */
@@ -151,3 +153,8 @@
 .legacy-content [class*="Footer_footer__"],
 .legacy-content [class*="Header_section__"],
 .legacy-content [class*="Footer_section__"] { display: none !important; }
+/* Keep JS-only interactive overlays hidden when not actually wired up */
+.legacy-content [class*="CalendarButton_calendar__"],
+.legacy-content [class*="EventCalendar_"],
+.legacy-content [class*="Modal_"],
+.legacy-content [class*="Popup_"] { display: none !important; }
