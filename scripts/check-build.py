@@ -1,5 +1,6 @@
-"""Sanity-check all 51 prerendered URLs."""
+"""Sanity-check all prerendered URLs."""
 import os, json, re, sys
+from urllib.parse import unquote
 
 DIST = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "dist"))
 PAGES_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src", "content", "pages"))
@@ -36,13 +37,20 @@ for entry in manifest:
             warnings.append(f"[.html LEFTOVER] {url} -> {href}")
     # asset path checks: every /site/upload reference must exist on disk
     for asset in re.findall(r'(?:src|href)="(/site/(?:upload|_next|favicon[^"]*)[^"]*)"', html):
-        local = os.path.join(DIST, asset.lstrip("/"))
+        # strip query/hash
+        clean = asset.split("?", 1)[0].split("#", 1)[0]
+        # decode percent-encoded chars (cyrillic, spaces, etc.)
+        decoded = unquote(clean)
+        local = os.path.join(DIST, decoded.lstrip("/"))
         if not os.path.exists(local):
-            errors.append(f"[MISSING ASSET] {url} -> {asset}")
+            # try encoded form too, in case file on disk is literally percent-encoded
+            local_raw = os.path.join(DIST, clean.lstrip("/"))
+            if not os.path.exists(local_raw):
+                errors.append(f"[MISSING ASSET] {url} -> {asset}")
 
 print(f"Pages checked: {len(manifest)}")
 print(f"Errors:   {len(errors)}")
-for e in errors[:30]: print("  ", e)
+for e in errors[:60]: print("  ", e)
 print(f"Warnings: {len(warnings)}")
 for w in warnings[:30]: print("  ", w)
 sys.exit(1 if errors else 0)
