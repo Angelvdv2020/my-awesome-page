@@ -209,12 +209,26 @@
 /* Hide slider nav/progress indicators that don't work without JS */
 .legacy-content [class*="Slider_slider__progress__"] { display: none !important; }
 
-/* Inline opacity:0 / translateY fade-in wrappers (Next.js animates on mount) */
+/* Reveal everything that the original site only shows when JS adds a
+   `_visible__` / `_active__` modifier. Without JS those stay at opacity:0
+   + translateY, leaving huge empty regions. */
+.legacy-content [class*="IndexPoints_card__"],
+.legacy-content [class*="IndexSolutions_card__"],
+.legacy-content [class*="IndexProducts_card__"],
+.legacy-content [class*="ServiceOpportunities_item__"],
+.legacy-content [class*="ProsBlock_item__"],
+.legacy-content [class*="CasesBlock_card__"],
+.legacy-content [class*="AboutNewsBlock_card__"],
+.legacy-content [class*="IndexMediaCenter_card__"],
+.legacy-content [class*="IndexFeedback_card__"],
+.legacy-content [class*="ContactForm_"],
+.legacy-content [class*="IndexTelegramBlock_"] {
+  opacity: 1 !important;
+  transform: none !important;
+}
 .legacy-content [style*="opacity:0"],
 .legacy-content [style*="opacity: 0"] { opacity: 1 !important; }
-.legacy-content [style*="translateY(70%)"],
-.legacy-content [style*="translateY(50%)"],
-.legacy-content [style*="translateY(30%)"] { transform: none !important; }
+.legacy-content [style*="translateY"] { transform: none !important; }
 
 /* IndexSolutions cards: render as responsive grid */
 .legacy-content [class*="IndexSolutions_section__all__"] {
